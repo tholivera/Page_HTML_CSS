@@ -7,14 +7,12 @@ body {
     background-image: url("./../../image/FUNDO.png");
 }
 
-
 nav {
     position: fixed;
     top: 0;
     background: rgb(87, 0, 128);
     width: 100%;
 }
-
 
 #menuCheck {
     display: none;
@@ -68,12 +66,16 @@ nav {
     height: 50px;
 }
 
-fieldset {
+#contato {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card {
     margin: 110px 30px;
     padding: 15px;
     border: 0;
     border-radius: 5px;
-    width: 25%;
     background: rgba(255, 192, 203, 0.354);
 }
 
@@ -90,14 +92,8 @@ fieldset {
 
 label {
     color: #655e5e;
-    text-align: center;
     font-size: 15px;
     font-family: 'Arial Narrow';
-}
-
-.frase-obt {
-    color: rgb(107, 7, 7);
-    font-size: 10px;
 }
 
 input {
@@ -130,6 +126,11 @@ textarea:focus {
     transition: all .2s;
 }
 
+.frase-obt {
+    color: rgb(107, 7, 7);
+    font-size: 10px;
+}
+
 button {
     position: relative;
     left: 42%;
@@ -146,19 +147,6 @@ button:hover {
     background: rgb(254, 141, 160);
     color: #FFF;
     transition: all .5s;
-}
-
-#contato {
-    display: flex;
-    justify-content: space-around;
-}
-
-.card {
-    margin: 110px 30px;
-    padding: 15px;
-    border: 0;
-    border-radius: 5px;
-    background: rgba(255, 192, 203, 0.354);
 }
 
 iframe {
@@ -182,10 +170,7 @@ footer {
 .redes {
     height: 40px;
     width: 40px;
-}
-
-#iconesRedes {
-margin: 8px;
+    margin: 8px 2px;
 }
 
 .p1Footer {
@@ -195,6 +180,5 @@ margin: 8px;
 
 .p2Footer {
     font-size: 10px;
-
     color: white;
 }

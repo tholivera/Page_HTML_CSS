@@ -70,11 +70,11 @@ nav {
 
 #card {
     margin-top: 110px;
+    width: 50%;
     margin-left: 25%;
     background: rgba(255, 192, 203, 0.354);
     border-radius: 10px;
     padding: 15px;
-    width: 50%;
     overflow-x: scroll;
 }
 
@@ -114,10 +114,7 @@ footer {
 .redes {
     height: 40px;
     width: 40px;
-}
-
-#iconesRedes {
-margin: 8px;
+    margin: 8px 2px;
 }
 
 .p1Footer {
@@ -127,6 +124,5 @@ margin: 8px;
 
 .p2Footer {
     font-size: 10px;
-
     color: white;
 }

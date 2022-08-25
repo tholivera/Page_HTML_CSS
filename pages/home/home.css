@@ -14,7 +14,6 @@ nav {
     width: 100%;
 }
 
-
 #menuCheck {
     display: none;
 }
@@ -60,25 +59,20 @@ nav {
 
 }
 
-#logo {
-    position: fixed;
-    top: 2px;
-    left: 45%;
-    width: 120px;
-    height: 50px;
+.mandala {
+    margin-top: 40px;
+    height: 300px;
+    width: 300px;
 }
 
 #home {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     padding-top: 70px;
 }
 
-#centro {
-    margin-top: 40px;
-}
-
 #textoHome {
+    margin-top: 40px;
     text-align: center;
     color: blueviolet;
     font-size: 25px;
@@ -86,16 +80,8 @@ nav {
 }
 
 #gif {
-    margin: 20px;
+    margin-top: 20px;
     border-radius: 25px;
-}
-
-.mandala {
-    margin-top: 40px;
-    height: 300px;
-    width: 300px;
-    padding: 0 30px;
-
 }
 
 footer {
@@ -112,10 +98,7 @@ footer {
 .redes {
     height: 40px;
     width: 40px;
-}
-
-#iconesRedes {
-margin: 8px;
+    margin: 8px 2px;
 }
 
 .p1Footer {
@@ -125,6 +108,5 @@ margin: 8px;
 
 .p2Footer {
     font-size: 10px;
-
     color: white;
 }
