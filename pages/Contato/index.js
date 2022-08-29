@@ -1,8 +1,7 @@
 const btn = document.querySelector("#btn");
 
 btn.addEventListener("click", function (event) {
-    event.preventDefault();
-
+    
     let formulario = document.querySelector("#formulario");
     let nome = formulario.nome.value;
     let email = formulario.email.value;
@@ -25,3 +24,5 @@ btn.addEventListener("click", function (event) {
 
 
 })
+
+alert("Mensagem enviada com sucesso!")
