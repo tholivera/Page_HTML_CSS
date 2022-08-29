@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -18,12 +19,15 @@ public class Formulario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@NotBlank
 	private String nome;
 	
 	@ApiModelProperty(example = "email@email.com.br")
 	@Email
+	@NotBlank
 	private String email;
 
+	@NotBlank
 	private String mensagem;
 
 	public long getId() {
