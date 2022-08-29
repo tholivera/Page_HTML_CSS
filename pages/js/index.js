@@ -20,21 +20,28 @@ btn.addEventListener("click", function (event) {
         headers: { "Content-type": "application/json" }, // tipo de arquivo enviado
         body: JSON.stringify(dados)
     })
-        .then(response => response.json())//transforma resposta em json
-        .then(data => console.log(data)) //imprime no console a resposta
-
+        .then(response => {
+            if (response.status == 201){
+                alert("Mensagem enviada com sucesso!")
+            }
+        })
+        .catch (() => {
+            alert("Erro!")
+        })
+        
 
 })
 
 function validarEmail() {
     let formulario = document.querySelector("#formulario");
     let inputEmail = formulario.email.value;
+    let caixaEmail = formulario.email;
     let regexEmail = /\S+@\S+\.\S+/;
 
     if (regexEmail.test(inputEmail)) {
-        console.log("Certo")
+        caixaEmail.style.border = "2px solid green"
     } else {
-        console.log("Erro!")
+        caixaEmail.style.border = "2px solid red"
     }
 }
 
