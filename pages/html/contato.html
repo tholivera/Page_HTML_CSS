@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../js/index.js" defer></script>
+    <link rel="icon" href="./../../image/Mandala.png" />
+    <link rel="stylesheet" href="./../styles/styles.css">
+    <title>Contato</title>
+</head>
+
+<body>
+    <nav>
+        <input type="checkbox" id="menuCheck" />
+        <label for="menuCheck"><img id="icone" src="./../../image/menu.png"
+                alt="Imagem de 3 barras horrizontais paralelas"></label>
+
+        <a href="./home.html"><img id="logo" src="./../../image/MundodoYoga.png" alt="Logo do Mundo do Yoga"></a>
+
+        <div class="menu">
+            <ul>
+                <li>
+                    <a class="itens" href="./home.html">Home</a>
+                </li>
+                <li>
+                    <a class="itens" href="./postagens.html">Postagens</a>
+                </li>
+                <li>
+                    <a class="itens" href="./fotos.html">Imagens</a>
+                </li>
+                <li>
+                    <a class="itens" href="./contato.html">contato</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="contato">
+        <form id="formulario" class="card">
+            <p class="frase1">Deseja falar conosco?</p>
+            <div>
+                <label for="nome">Nome*</label>
+                <input name="nome" type="text" required>
+            </div>
+            <div>
+                <label for="email">E-mail*</label>
+                <input name="email" type="email" required oninput="validarEmail()">
+            </div>
+            <div>
+                <label for="mensagem">Mensagem*</label>
+                <textarea name="mensagem" rows="5" required></textarea>
+            </div>
+            <p class="frase-obt"><strong>Itens com * são obrigatórios</strong></p>
+            <button id="btn" type="submit">ENVIAR</button>
+        </form>
+
+        <div class="card">
+            <p class="frase1">Endereço</p>
+            <p class="frase2">Av. Paulista, 1811 - Bela Vista - 01311-200</p>
+            <p class="frase2">São Paulo - SP</p>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.224851514315!2d-46.6602149850221!3d-23.560366584683333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59dda627a4c1%3A0x5b2894a7ce278306!2sM%C3%A9qui%201000!5e0!3m2!1spt-BR!2sbr!4v1661452739665!5m2!1spt-BR!2sbr">
+            </iframe>
+        </div>
+
+    </div>
+
+
+    <footer>
+        <div>
+            <p class="p1Footer">
+                Nos sigam nas redes sociais
+            </p>
+            <div>
+                <a href="https://br.linkedin.com/"><img class="redes" src="./../../image/linkedin.png"
+                        alt="LinkedIn"></a>
+                <a href="https://facebook.com/"><img class="redes" src="./../../image/facebook.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/"><img class="redes" src="./../../image/instagram.png"
+                        alt="Instagram"></a>
+            </div>
+            <p class="p2Footer">
+                Created by: Thaís Oliveira &copy; 2022
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
