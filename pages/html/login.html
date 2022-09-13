@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./../../image/Mandala.png" />
+    <link rel="stylesheet" href="./../styles/styles.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <nav>
+        <input type="checkbox" id="menuCheck" />
+        <label for="menuCheck"><img id="icone" src="./../../image/menu.png"
+                alt="Imagem de 3 barras horrizontais paralelas"></label>
+
+        <a href="./home.html"><img id="logo" src="./../../image/MundodoYoga.png" alt="Logo do Mundo do Yoga"></a>
+
+        <div class="menu">
+            <ul>
+                <li>
+                    <a class="itens" href="./home.html">Home</a>
+                </li>
+                <li>
+                    <a class="itens" href="./postagens.html">Postagens</a>
+                </li>
+                <li>
+                    <a class="itens" href="./fotos.html">Imagens</a>
+                </li>
+                <li>
+                    <a class="itens" href="./contato.html">contato</a>
+                </li>
+            </ul>
+        </div>
+        <div class="logar">
+            <a class="itens-logar" href="./cadastro.html">Cadastre-se</a>
+
+            <a class="itens-logar" href="./login.html">Entrar</a>
+        </div>
+    </nav>
+    <div id="login">
+        <form>
+            <p id="txt-login">entrar</p>
+            <div>
+                <label for="email">E-mail*</label>
+                <input name="email" type="email" required oninput="validarEmail()">
+            </div>
+            <div>
+                <label for="mensagem">Senha*</label>
+                <input name="senha" type="password" required></input>
+            </div>
+            <p class="frase-obt"><strong>Itens com * são obrigatórios</strong></p>
+            <button id="btn" type="submit">ENVIAR</button>
+        </form>
+    </div>
+
+
+    <footer>
+        <div>
+            <p class="p1Footer">
+                Nos sigam nas redes sociais
+            </p>
+            <div>
+                <a href="https://br.linkedin.com/"><img class="redes" src="./../../image/linkedin.png"
+                        alt="LinkedIn"></a>
+                <a href="https://facebook.com/"><img class="redes" src="./../../image/facebook.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/"><img class="redes" src="./../../image/instagram.png"
+                        alt="Instagram"></a>
+            </div>
+            <p class="p2Footer">
+                Created by: Thaís Oliveira &copy; 2022
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
