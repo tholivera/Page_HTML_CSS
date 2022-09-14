@@ -23,8 +23,6 @@ const mensagemUsuario = db.define('mensagem', {
 });
 
 
-//mensagemUsuario.sync()
 
-//mensagemUsuario.sync({alter:true})
 
 module.exports = mensagemUsuario;

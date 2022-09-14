@@ -8,7 +8,7 @@ const sequelize = new Sequelize("login", "root", "root", {
 sequelize.authenticate()
 .then(function(){
     console.log("Conectado")
-}) . catch(function(){
+}). catch(function(){
     console.log("Erro de conexão")
 })
 

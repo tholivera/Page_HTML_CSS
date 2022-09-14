@@ -23,8 +23,4 @@ const cadastroUsuario = db.define('cadastro', {
 });
 
 
-//cadastroUsuario.sync()
-
-//cadastroUsuario.sync({alter:true})
-
 module.exports = cadastroUsuario;
