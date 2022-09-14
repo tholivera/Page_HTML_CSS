@@ -340,7 +340,7 @@ iframe {
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 125px;
+    top: 25%;
     left: 35%;
     padding: 15px;
     border-radius: 5px;
@@ -362,7 +362,7 @@ iframe {
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 160px;
+    top: 25%;
     left: 35%;
     padding: 15px;
     border-radius: 5px;
