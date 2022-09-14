@@ -40,26 +40,21 @@ server.post("/cadastrar", (req, res) => {
 })
 
 
-
-server.put("/atualizar-cadastro/:index", (req, res) => {
+server.put("/atualizar-cadastro/:index", async (req, res) => {
 
     const { index } = req.params;
 
     const { nome, email, senha } = req.body
 
-    const cadastro = {
-        "nome": nome,
-        "email": email,
-        "senha": senha
-    }
+    const atualizar = await cadastroUsuario.findByPk(index);
 
-    cadastrar[index] = cadastro
+    atualizar.nome = nome
+    atualizar.email = email
+    atualizar.senha = senha
 
-    const atualizar = cadastroUsuario.findByPk(index);
+    atualizar.save();
 
-
-
-    return res.json(cadastrar);
+    return res.json(atualizar);
 })
 
 server.delete("/apagar-cadastro/:index", (req, res) => {
@@ -70,7 +65,7 @@ server.delete("/apagar-cadastro/:index", (req, res) => {
 
     //cadastrar.splice(index, 1); // deletar fora do db
 
-    return res.send("Usuário deletado com sucesso");
+    return res.send("Cadastro deletado com sucesso");
 })
 
 //cadastro de novas mensagens
@@ -99,28 +94,30 @@ server.post("/mensagens", (req, res) => {
     return res.json(mensagens)
 })
 
-server.put("/atualizar-mensagem/:index", (req, res) => {
+server.put("/atualizar-mensagem/:index", async (req, res) => {
+
     const { index } = req.params;
+
     const { nome, email, mensagem } = req.body
 
-    const novaMensagem = {
-        "nome": nome,
-        "email": email,
-        "mensagem": mensagem
-    }
+    const atualizar = await mensagemUsuario.findByPk(index);
 
-    mensagens[index] = novaMensagem;
+    atualizar.nome = nome
+    atualizar.email = email
+    atualizar.mensagem = mensagem
 
-    return res.json(mensagens);
+    atualizar.save();
+
+    return res.json(atualizar);
 })
 
 server.delete("/apagar-mensagem/:index", (req, res) => {
 
     const { index } = req.params;
 
-    mensagemUsuario.destroy({ where: { id: index } });
+    cadastroUsuario.destroy({ where: { id: index } }); // deletar no db
 
-    mensagens.splice(index, 1);
+    //cadastrar.splice(index, 1); // deletar fora do db
 
     return res.send("Mensagem deletada com sucesso");
 })
