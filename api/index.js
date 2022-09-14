@@ -3,6 +3,8 @@ const cors = require('cors')
 const server = express()
 const mensagens = []
 const cadastrar = []
+const cadastroUsuario = require("../database/models/cadastroUsuario")
+const mensagemUsuario = require("../database/models/mensagemUsuario")
 
 server.use(express.json())
 
@@ -18,6 +20,7 @@ server.get("/ver-cadastro", (req, res) => {
 })
 
 server.post("/cadastrar", (req, res) => {
+    cadastroUsuario.create(req.body)
 
     const { nome, email, senha } = req.body
 
@@ -33,6 +36,7 @@ server.post("/cadastrar", (req, res) => {
 })
 
 server.put("/atualizar-cadastro/:index", (req, res) => {
+
     const { index } = req.params;
     const { nome, email, senha } = req.body
 
@@ -48,6 +52,7 @@ server.put("/atualizar-cadastro/:index", (req, res) => {
 })
 
 server.delete("/apagar-cadastro/:index", (req, res) => {
+
     const { index } = req.params;
 
     cadastrar.splice(index, 1);
@@ -62,6 +67,8 @@ server.get("/ver-mensagens", (req, res) => {
 })
 
 server.post("/mensagens", (req, res) => {
+    
+    mensagemUsuario.create(req.body)
 
     const { nome, email, mensagem } = req.body
 
