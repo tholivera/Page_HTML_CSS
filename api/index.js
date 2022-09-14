@@ -15,16 +15,20 @@ server.use((req, res, next) => {
 })
 
 //cadastro de novos usuários
-server.get("/ver-cadastro", (req, res) => {
-    return res.json(cadastrar)
+server.get("/ver-cadastro", async (req, res) => {
+
+    const cadastro = await cadastroUsuario.findAll()
+
+    return res.json(cadastro)
 })
 
 server.post("/cadastrar", (req, res) => {
-    cadastroUsuario.create(req.body)
+
+   cadastroUsuario.create(req.body)
 
     const { nome, email, senha } = req.body
 
-    const cadastro = {
+   const cadastro = {
         "nome": nome,
         "email": email,
         "senha": senha
@@ -35,9 +39,12 @@ server.post("/cadastrar", (req, res) => {
     return res.json(cadastrar)
 })
 
+
+
 server.put("/atualizar-cadastro/:index", (req, res) => {
 
     const { index } = req.params;
+
     const { nome, email, senha } = req.body
 
     const cadastro = {
@@ -46,7 +53,11 @@ server.put("/atualizar-cadastro/:index", (req, res) => {
         "senha": senha
     }
 
-    cadastrar[index] = cadastro;
+    cadastrar[index] = cadastro
+
+    const atualizar = cadastroUsuario.findByPk(index);
+
+
 
     return res.json(cadastrar);
 })
@@ -55,22 +66,27 @@ server.delete("/apagar-cadastro/:index", (req, res) => {
 
     const { index } = req.params;
 
-    cadastrar.splice(index, 1);
+    cadastroUsuario.destroy({ where: { id: index } }); // deletar no db
+
+    //cadastrar.splice(index, 1); // deletar fora do db
 
     return res.send("Usuário deletado com sucesso");
 })
 
 //cadastro de novas mensagens
 
-server.get("/ver-mensagens", (req, res) => {
-    return res.json(mensagens)
+server.get("/ver-mensagens", async (req, res) => {
+    
+    const mensagem = await mensagemUsuario.findAll()
+    
+    return res.json(mensagem)
 })
 
 server.post("/mensagens", (req, res) => {
-    
-    mensagemUsuario.create(req.body)
 
-    const { nome, email, mensagem } = req.body
+   mensagemUsuario.create(req.body)
+
+   const { nome, email, mensagem } = req.body
 
     const novaMensagem = {
         "nome": nome,
@@ -99,11 +115,18 @@ server.put("/atualizar-mensagem/:index", (req, res) => {
 })
 
 server.delete("/apagar-mensagem/:index", (req, res) => {
+
     const { index } = req.params;
+
+    mensagemUsuario.destroy({ where: { id: index } });
 
     mensagens.splice(index, 1);
 
     return res.send("Mensagem deletada com sucesso");
 })
+
+//cadastroUsuario.sync({alter:true})
+//mensagemUsuario.sync({alter:true})
+
 
 server.listen(3000);
