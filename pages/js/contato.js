@@ -41,6 +41,3 @@ function validarEmail() {
         caixaEmail.style.border = "2px solid red"
     }
 }
-
-
-
