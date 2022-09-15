@@ -49,7 +49,9 @@ server.put("/atualizar-cadastro/:index", async (req, res) => {
 
     const { index } = req.params;
 
-    const { nome, email, senha } = req.body
+    const { nome, email } = req.body
+
+    const senha = await bcrypt.hash(req.body.senha, 10)
 
     const atualizar = await cadastroUsuario.findByPk(index);
 
@@ -130,7 +132,6 @@ server.delete("/apagar-mensagem/:index", (req, res) => {
 //autenticação
 server.post("/login", async (req, res) => {
 
-    //$2b$10$rnFmQ3LLrBeJ55v29ZqwbeB9FLUZ5BepPXlEvN1gzi3DxfQcT1TFG
     const encontrarUsuario = await cadastroUsuario.findOne({
         attributes: ["id", "nome", "email", "senha"],
         where: {
@@ -160,7 +161,6 @@ server.post("/login", async (req, res) => {
         mensagem: "Deu booom",
         token
     })
-
 
 })
 
