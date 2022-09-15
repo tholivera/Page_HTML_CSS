@@ -1,5 +1,7 @@
 const express = require('express')
 const cors = require('cors')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const server = express()
 const mensagens = []
 const cadastrar = []
@@ -22,17 +24,19 @@ server.get("/ver-cadastro", async (req, res) => {
     return res.json(cadastro)
 })
 
-server.post("/cadastrar", (req, res) => {
+server.post("/cadastrar", async (req, res) => {
 
-   cadastroUsuario.create(req.body)
+    const { nome, email } = req.body
 
-    const { nome, email, senha } = req.body
+    const senha = await bcrypt.hash(req.body.senha, 10)
 
-   const cadastro = {
+    const cadastro = {
         "nome": nome,
         "email": email,
         "senha": senha
     }
+
+    cadastroUsuario.create(cadastro)
 
     cadastrar.push(cadastro)
 
@@ -71,17 +75,17 @@ server.delete("/apagar-cadastro/:index", (req, res) => {
 //cadastro de novas mensagens
 
 server.get("/ver-mensagens", async (req, res) => {
-    
+
     const mensagem = await mensagemUsuario.findAll()
-    
+
     return res.json(mensagem)
 })
 
 server.post("/mensagens", (req, res) => {
 
-   mensagemUsuario.create(req.body)
+    mensagemUsuario.create(req.body)
 
-   const { nome, email, mensagem } = req.body
+    const { nome, email, mensagem } = req.body
 
     const novaMensagem = {
         "nome": nome,
@@ -120,6 +124,32 @@ server.delete("/apagar-mensagem/:index", (req, res) => {
     //cadastrar.splice(index, 1); // deletar fora do db
 
     return res.send("Mensagem deletada com sucesso");
+})
+
+//autenticação
+server.post("/login", async (req, res) => {
+
+    const encontrarUsuario = await cadastroUsuario.findOne({
+        attributes: ["id", "nome", "email", "senha"],
+        where: {
+            email: req.body.email
+        }
+    })
+
+    if (encontrarUsuario == null) {
+        return res.status(400).send("Usuário ou senha incorreta!!")
+    } else if (!(await bcrypt.compare(req.body.senha, encontrarUsuario.senha))) {
+        res.send("Deu errado!")
+    } else {
+        alert("Logado rapaz")
+       // res.send("Deu certo!")
+    }
+
+   /* let token = jwt.sign({id: 1}, "D658FDS6584GFXV26DFCDDS5", {
+        expiresIn: "365d"
+    })
+
+    return res.send("Login realizado com sucesso!")*/
 })
 
 //cadastroUsuario.sync({alter:true})
