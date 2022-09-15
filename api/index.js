@@ -3,7 +3,7 @@ const cors = require('cors')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const server = express()
-const { aAdmin, eAdmin } = require("./middleware/autenticacao")
+const { eAdmin } = require("./autenticacao")
 const cadastroUsuario = require("../database/models/cadastroUsuario")
 const mensagemUsuario = require("../database/models/mensagemUsuario")
 const mensagens = []
@@ -155,7 +155,6 @@ server.post("/login", async (req, res) => {
     let token = jwt.sign({ id: encontrarUsuario.id }, "D658FDS6584GFXV26DFCDDS5", {
         expiresIn: "365d"
     })
-
 
     return res.json({
         mensagem: "Deu booom",
