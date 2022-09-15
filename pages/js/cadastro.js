@@ -1,12 +1,11 @@
-const btn = document.querySelector("#btn")
+const btn2 = document.querySelector("#btn2")
 
+btn2.addEventListener("click", function () {
 
-btn.addEventListener("click", function () {
-    let formulario = document.querySelector("#formulario")
-    let inputNome = formulario.nome.valu
+    let formulario = document.querySelector("#formulario-cadastro")
+    let inputNome = formulario.nome.value
     let inputEmail = formulario.email.value
     let inputSenha = formulario.senha.value
-
 
     let dados = {
         nome: inputNome,
@@ -21,21 +20,22 @@ btn.addEventListener("click", function () {
     })
         .then(response => {
             if (response.status == 201) {
-                alert("Mensagem enviada com sucesso!")
+                alert("Usuário cadastrado enviada com sucesso!")
             }
         })
         .catch(() => {
             alert("Erro!")
         })
 
+
 })
 
 function validarEmail() {
-    let formulario = document.querySelector("#formulario")
+    let formulario = document.querySelector("#formulario-cadastro")
     let inputEmail = formulario.email.value
     let caixaEmail = formulario.email
     let regexEmail = /\S+@\S+\.\S+/
-    
+
     if (regexEmail.test(inputEmail)) {
         caixaEmail.style.border = "2px solid green"
     } else {
