@@ -3,10 +3,11 @@ const cors = require('cors')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const server = express()
-const mensagens = []
-const cadastrar = []
+const { aAdmin, eAdmin } = require("./middleware/autenticacao")
 const cadastroUsuario = require("../database/models/cadastroUsuario")
 const mensagemUsuario = require("../database/models/mensagemUsuario")
+const mensagens = []
+const cadastrar = []
 
 server.use(express.json())
 
@@ -129,6 +130,7 @@ server.delete("/apagar-mensagem/:index", (req, res) => {
 //autenticação
 server.post("/login", async (req, res) => {
 
+    //$2b$10$rnFmQ3LLrBeJ55v29ZqwbeB9FLUZ5BepPXlEvN1gzi3DxfQcT1TFG
     const encontrarUsuario = await cadastroUsuario.findOne({
         attributes: ["id", "nome", "email", "senha"],
         where: {
@@ -137,19 +139,39 @@ server.post("/login", async (req, res) => {
     })
 
     if (encontrarUsuario == null) {
-        return res.status(400).send("Usuário ou senha incorreta!!")
-    } else if (!(await bcrypt.compare(req.body.senha, encontrarUsuario.senha))) {
-        res.send("Deu errado!")
-    } else {
-        alert("Logado rapaz")
-       // res.send("Deu certo!")
+        return res.status(400).json({
+            error: true,
+            mensagem: "Usuário ou senha incorreta!!"
+        })
     }
 
-   /* let token = jwt.sign({id: 1}, "D658FDS6584GFXV26DFCDDS5", {
+    if (!(await bcrypt.compare(req.body.senha, encontrarUsuario.senha))) {
+        return res.status(400).json({
+            error: true,
+            mensagem: "Deu errado!"
+        })
+    }
+
+    let token = jwt.sign({ id: encontrarUsuario.id }, "D658FDS6584GFXV26DFCDDS5", {
         expiresIn: "365d"
     })
 
-    return res.send("Login realizado com sucesso!")*/
+
+    return res.json({
+        mensagem: "Deu booom",
+        token
+    })
+
+
+})
+
+//rota restrita
+server.get("/ver", eAdmin, async (req, res) => {
+    return res.json({
+        erro: false,
+        mensagem: "Rota de teste",
+        ulala: req.userID
+    })
 })
 
 //cadastroUsuario.sync({alter:true})
