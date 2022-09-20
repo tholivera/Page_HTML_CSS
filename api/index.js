@@ -1,9 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
 const server = express()
-const { eAdmin } = require("./autenticacao")
 const cadastroUsuario = require("../database/models/cadastroUsuario")
 const mensagemUsuario = require("../database/models/mensagemUsuario")
 const mensagens = []
@@ -45,15 +43,15 @@ server.post("/cadastrar", async (req, res) => {
 })
 
 
-server.put("/atualizar-cadastro/:index", async (req, res) => {
+server.put("/atualizar-cadastro/:id", async (req, res) => {
 
-    const { index } = req.params;
+    const { id } = req.params;
 
     const { nome, email } = req.body
 
     const senha = await bcrypt.hash(req.body.senha, 10)
 
-    const atualizar = await cadastroUsuario.findByPk(index);
+    const atualizar = await cadastroUsuario.findByPk(id);
 
     atualizar.nome = nome
     atualizar.email = email
@@ -64,13 +62,13 @@ server.put("/atualizar-cadastro/:index", async (req, res) => {
     return res.json(atualizar);
 })
 
-server.delete("/apagar-cadastro/:index", (req, res) => {
+server.delete("/apagar-cadastro/:id", (req, res) => {
 
-    const { index } = req.params;
+    const { id } = req.params;
 
-    cadastroUsuario.destroy({ where: { id: index } }); // deletar no db
+    cadastroUsuario.destroy({ where: { id: id } }); // deletar no db
 
-    //cadastrar.splice(index, 1); // deletar fora do db
+    //cadastrar.splice(id, 1); // deletar fora do db
 
     return res.send("Cadastro deletado com sucesso");
 })
@@ -101,13 +99,13 @@ server.post("/mensagens", (req, res) => {
     return res.json(mensagens)
 })
 
-server.put("/atualizar-mensagem/:index", async (req, res) => {
+server.put("/atualizar-mensagem/:id", async (req, res) => {
 
-    const { index } = req.params;
+    const { id } = req.params;
 
     const { nome, email, mensagem } = req.body
 
-    const atualizar = await mensagemUsuario.findByPk(index);
+    const atualizar = await mensagemUsuario.findByPk(id);
 
     atualizar.nome = nome
     atualizar.email = email
@@ -118,11 +116,11 @@ server.put("/atualizar-mensagem/:index", async (req, res) => {
     return res.json(atualizar);
 })
 
-server.delete("/apagar-mensagem/:index", (req, res) => {
+server.delete("/apagar-mensagem/:id", (req, res) => {
 
-    const { index } = req.params;
+    const { id } = req.params;
 
-    cadastroUsuario.destroy({ where: { id: index } }); // deletar no db
+    mensagemUsuario.destroy({ where: { id: id } }); // deletar no db
 
     //cadastrar.splice(index, 1); // deletar fora do db
 
@@ -149,29 +147,15 @@ server.post("/login", async (req, res) => {
     if (!(await bcrypt.compare(req.body.senha, encontrarUsuario.senha))) {
         return res.status(400).json({
             error: true,
-            mensagem: "Deu errado!"
+            mensagem: "Usuário ou senha incorreta!!"
         })
     }
 
-    let token = jwt.sign({ id: encontrarUsuario.id }, "D658FDS6584GFXV26DFCDDS5", {
-        expiresIn: "365d"
-    })
 
-    return res.json({
-        mensagem: "Deu booom",
-        token
-    })
+    return res.send("Deu booom")
 
 })
 
-//rota restrita
-server.get("/ver", eAdmin, async (req, res) => {
-    return res.json({
-        erro: false,
-        mensagem: "Rota de teste",
-        ulala: req.userID
-    })
-})
 
 //cadastroUsuario.sync({alter:true})
 //mensagemUsuario.sync({alter:true})
