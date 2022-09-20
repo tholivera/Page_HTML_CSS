@@ -138,14 +138,14 @@ server.post("/login", async (req, res) => {
     })
 
     if (encontrarUsuario == null) {
-        return res.status(400).json({
+        return res.status(401).json({
             error: true,
             mensagem: "Usuário ou senha incorreta!!"
         })
     }
 
     if (!(await bcrypt.compare(req.body.senha, encontrarUsuario.senha))) {
-        return res.status(400).json({
+        return res.status(401).json({
             error: true,
             mensagem: "Usuário ou senha incorreta!!"
         })
