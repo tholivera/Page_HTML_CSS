@@ -49,12 +49,16 @@ function validarEmail() {
     let formulario = document.querySelector("#formulario-cadastro")
     let inputEmail = formulario.email.value
     let caixaEmail = formulario.email
+    let span = document.querySelector(".span")
     let regexEmail = /\S+@\S+\.\S+/
 
     if (regexEmail.test(inputEmail)) {
-        caixaEmail.style.border = "2px solid green"
+        caixaEmail.style.border = "none"
+        span.style.display = "none"
+
     } else {
         caixaEmail.style.border = "2px solid red"
+        span.style.display = "block"
     }
 }
 

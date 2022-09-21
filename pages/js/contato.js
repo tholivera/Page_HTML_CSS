@@ -1,6 +1,7 @@
 const btn = document.querySelector("#btn")
 
-btn.addEventListener("click", function () {
+btn.addEventListener("click", function (event) {
+    event.preventDefault()
     let regexEmail = /\S+@\S+\.\S+/
     let formulario = document.querySelector("#formulario")
     let inputNome = formulario.nome.value
@@ -32,7 +33,7 @@ btn.addEventListener("click", function () {
             .then(response => {
                 if (response.status == 200) {
                     alert("Mensagem enviada com sucesso!")
-
+                    location.reload()
                 }
                 if (response.status == 401) {
                     alert("Erro ao enviar mensagem!")
@@ -46,11 +47,15 @@ function validarEmail() {
     let formulario = document.querySelector("#formulario")
     let inputEmail = formulario.email.value
     let caixaEmail = formulario.email
+    let span = document.querySelector(".span")
     let regexEmail = /\S+@\S+\.\S+/
 
     if (regexEmail.test(inputEmail)) {
-        caixaEmail.style.border = "2px solid green"
+        caixaEmail.style.border = "none"
+        span.style.display = "none"
+
     } else {
         caixaEmail.style.border = "2px solid red"
+        span.style.display = "block"
     }
 }
