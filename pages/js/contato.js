@@ -1,6 +1,7 @@
 const btn = document.querySelector("#btn")
 
 btn.addEventListener("click", function () {
+    let regexEmail = /\S+@\S+\.\S+/
     let formulario = document.querySelector("#formulario")
     let inputNome = formulario.nome.value
     let inputEmail = formulario.email.value
@@ -16,11 +17,13 @@ btn.addEventListener("click", function () {
     }
     if (inputEmail == "") {
         alert("Digite seu e-mail")
+    } else if (!regexEmail.test(inputEmail)) {
+        alert("E-mail inválido")
     }
     if (inputMensagem == "") {
         alert("Digite a mensagem")
     }
-    if (inputNome != "" && inputEmail != "" && inputMensagem != "") {
+    if (inputNome != "" && inputEmail != "" && regexEmail.test(inputEmail) && inputMensagem != "") {
         fetch('http://127.0.0.1:3000/mensagens', {
             method: "POST",
             headers: { "Content-type": "application/json" }, // tipo de arquivo enviado

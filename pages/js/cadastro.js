@@ -2,6 +2,7 @@ const btn2 = document.querySelector("#btn2")
 
 btn2.addEventListener("click", function (event) {
     event.preventDefault()
+    let regexEmail = /\S+@\S+\.\S+/
     let formulario = document.querySelector("#formulario-cadastro")
     let inputNome = formulario.nome.value
     let inputEmail = formulario.email.value
@@ -18,11 +19,13 @@ btn2.addEventListener("click", function (event) {
     }
     if (inputEmail == "") {
         alert("Digite seu e-mail")
+    } else if (!regexEmail.test(inputEmail)) {
+        alert("E-mail inválido")
     }
     if (inputSenha == "") {
         alert("Digite a senha")
     }
-    if (inputNome != "" && inputEmail != "" && inputSenha != "") {
+    if (inputNome != "" && inputEmail != "" && regexEmail.test(inputEmail) && inputSenha != "") {
 
         fetch('http://127.0.0.1:3000/cadastrar', {
             method: "POST",
@@ -32,7 +35,7 @@ btn2.addEventListener("click", function (event) {
             .then(response => {
                 if (response.status == 200) {
                     alert("Usuário cadastrado com sucesso!")
-
+                    location.reload()
                 }
                 if (response.status == 401) {
                     alert("Erro ao cadastrar usuário!")
