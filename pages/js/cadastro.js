@@ -1,7 +1,7 @@
 const btn2 = document.querySelector("#btn2")
 
-btn2.addEventListener("click", function () {
-
+btn2.addEventListener("click", function (event) {
+    event.preventDefault()
     let formulario = document.querySelector("#formulario-cadastro")
     let inputNome = formulario.nome.value
     let inputEmail = formulario.email.value
@@ -13,20 +13,32 @@ btn2.addEventListener("click", function () {
         senha: inputSenha
     }
 
-    fetch('http://127.0.0.1:3000/cadastrar', {
-        method: "POST",
-        headers: { "Content-type": "application/json" }, // tipo de arquivo enviado
-        body: JSON.stringify(dados)
-    })
-        .then(response => {
-            if (response.status == 201) {
-                alert("Usuário cadastrado enviada com sucesso!")
-            }
-        })
-        .catch(() => {
-            alert("Erro!")
-        })
+    if (inputNome == "") {
+        alert("Digite seu nome")
+    }
+    if (inputEmail == "") {
+        alert("Digite seu e-mail")
+    }
+    if (inputSenha == "") {
+        alert("Digite a senha")
+    }
+    if (inputNome != "" && inputEmail != "" && inputSenha != "") {
 
+        fetch('http://127.0.0.1:3000/cadastrar', {
+            method: "POST",
+            headers: { "Content-type": "application/json" }, // tipo de arquivo enviado
+            body: JSON.stringify(dados)
+        })
+            .then(response => {
+                if (response.status == 200) {
+                    alert("Usuário cadastrado com sucesso!")
+
+                }
+                if (response.status == 401) {
+                    alert("Erro ao cadastrar usuário!")
+                }
+            })
+    }
 
 })
 

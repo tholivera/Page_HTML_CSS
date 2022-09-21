@@ -11,21 +11,31 @@ btn.addEventListener("click", function () {
         email: inputEmail,
         mensagem: inputMensagem
     }
-
-    fetch('http://127.0.0.1:3000/mensagens', {
-        method: "POST",
-        headers: { "Content-type": "application/json" }, // tipo de arquivo enviado
-        body: JSON.stringify(dados)
-    })
-        .then(response => {
-            if (response.status == 201) {
-                alert("Mensagem enviada com sucesso!")
-            }
+    if (inputNome == "") {
+        alert("Digite seu nome")
+    }
+    if (inputEmail == "") {
+        alert("Digite seu e-mail")
+    }
+    if (inputMensagem == "") {
+        alert("Digite a mensagem")
+    }
+    if (inputNome != "" && inputEmail != "" && inputMensagem != "") {
+        fetch('http://127.0.0.1:3000/mensagens', {
+            method: "POST",
+            headers: { "Content-type": "application/json" }, // tipo de arquivo enviado
+            body: JSON.stringify(dados)
         })
-        .catch(() => {
-            alert("Erro!")
-        })
+            .then(response => {
+                if (response.status == 200) {
+                    alert("Mensagem enviada com sucesso!")
 
+                }
+                if (response.status == 401) {
+                    alert("Erro ao enviar mensagem!")
+                }
+            })
+    }
 
 })
 

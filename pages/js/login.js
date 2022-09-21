@@ -11,21 +11,27 @@ btn3.addEventListener("click", function (event) {
         senha: inputSenha
     }
 
-    fetch('http://127.0.0.1:3000/login', {
-        method: "POST",
-        headers: { "Content-type": "application/json" }, // tipo de arquivo enviado
-        body: JSON.stringify(dados)
-    })
-        .then(response => {
-            if (response.status == 200) {
-                alert("OK")
-            }
+    if (inputEmail == "") {
+        alert("Digite o e-mail")
+    }
+    if (inputSenha == "") {
+        alert("Digite a senha")
+    }
+    if (inputEmail != "" && inputSenha != "") {
+        fetch('http://127.0.0.1:3000/login', {
+            method: "POST",
+            headers: { "Content-type": "application/json" }, // tipo de arquivo enviado
+            body: JSON.stringify(dados)
         })
-        .catch(() => {
-            response.status == 400
-            alert("Erro!")
-        })
-
+            .then(response => {
+                if (response.status == 200) {
+                    location.href = "/pages/html/logado.html"
+                }
+                if (response.status == 401) {
+                    location.href = "/pages/html/nao-logado.html"
+                }
+            })
+    }
 })
 
 function validarEmail() {
