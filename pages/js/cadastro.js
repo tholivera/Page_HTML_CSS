@@ -38,7 +38,7 @@ btn2.addEventListener("click", function (event) {
                     location.reload()
                 }
                 if (response.status == 401) {
-                    alert("Erro ao cadastrar usuário!")
+                    alert("Erro ao cadastrar usuário!\nE-mail já cadastrado!")
                 }
             })
     }

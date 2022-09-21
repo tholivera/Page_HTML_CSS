@@ -15,6 +15,7 @@ const cadastroUsuario = db.define('cadastro', {
     email: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
     },
     senha: {
         type: Sequelize.STRING,

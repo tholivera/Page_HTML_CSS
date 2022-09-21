@@ -35,11 +35,32 @@ server.post("/cadastrar", async (req, res) => {
         "senha": senha
     }
 
-    cadastroUsuario.create(cadastro)
+    const encontrarEmail = await cadastroUsuario.findOne({
+        attributes: ["email"],
+        where: {
+            email: email
+        }
+    })
 
-    cadastrar.push(cadastro)
+    if (encontrarEmail == null) {
 
-    return res.json(cadastrar)
+        cadastroUsuario.create(cadastro)
+
+        cadastrar.push(cadastro)
+
+        return res.json(cadastrar)
+
+    } else {
+        return res.status(401).json({
+            error: true,
+            mensagem: "Erro: Usuário já cadastrado!"
+        })
+    }
+
+
+
+
+
 })
 
 
@@ -152,7 +173,7 @@ server.post("/login", async (req, res) => {
     }
 
 
-    return res.send("Deu booom")
+    return res.send("Logado com sucesso!")
 
 })
 
