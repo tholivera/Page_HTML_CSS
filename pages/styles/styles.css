@@ -218,7 +218,14 @@ h2 {
     border-radius: 10px;
     padding: 15px;
     overflow-x: scroll;
+
 }
+
+#cardFotos::-webkit-scrollbar {
+  
+    background: #686868;
+}
+
 
 #texto {
     position: fixed;
@@ -310,7 +317,7 @@ textarea:focus {
     font-size: 10px;
 }
 
-button {
+#btn {
     position: relative;
     left: 42%;
     padding: 5px;
@@ -322,7 +329,7 @@ button {
     box-shadow: 2px 2px rgba(105, 103, 103, 0.902);
 }
 
-button:hover {
+#btn:hover {
     background: rgb(254, 141, 160);
     color: #FFF;
     transition: all .5s;
@@ -340,7 +347,7 @@ iframe {
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 25%;
+    top: 15%;
     left: 35%;
     padding: 15px;
     border-radius: 5px;
@@ -355,6 +362,51 @@ iframe {
     font-family: 'Arial Narrow';
     font-weight: bolder;
     color: #655e5e;
+}
+
+#btn2 {
+    margin-top: 20px;
+    margin-left: 38%;
+    padding: 5px;
+    font-weight: bold;
+    background: pink;
+    border: 0;
+    border-radius: 2px;
+    color: #655e5e;
+    box-shadow: 2px 2px rgba(105, 103, 103, 0.902);
+}
+
+#btn2:hover {
+    background: rgb(254, 141, 160);
+    color: #FFF;
+    transition: all .5s;
+}
+
+#btn5 {
+    margin-top: 5px;
+    margin-left: 20%;
+    background: rgb(243, 13, 52);
+    border: 0;
+    border-radius: 2px;
+    color: #655e5e;
+    box-shadow: 2px 2px rgba(105, 103, 103, 0.902);
+    padding: 5px;
+    font-weight: bold;
+}
+
+#btn5:hover {
+    background: rgb(255, 131, 151);
+}
+
+#a-cadastro {
+    color: #FFF;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#a-cadastro:hover {
+    color: black;
+    transition: all .5s;
 }
 
 /* Login */
@@ -377,4 +429,74 @@ iframe {
     font-family: 'Arial Narrow';
     font-weight: bolder;
     color: #655e5e;
+}
+
+#btn3 {
+    margin-top: 20px;
+    margin-left: 41%;
+    padding: 5px;
+    font-weight: bold;
+    background: pink;
+    border: 0;
+    border-radius: 2px;
+    color: #655e5e;
+    box-shadow: 2px 2px rgba(105, 103, 103, 0.902);
+}
+
+#btn3:hover {
+    background: rgb(254, 141, 160);
+    transition: all .5s;
+}
+
+#btn4 {
+    margin-top: 5px;
+    margin-left: 24%;
+    background: rgb(243, 13, 52);
+    border: 0;
+    border-radius: 2px;
+    color: #655e5e;
+    box-shadow: 2px 2px rgba(105, 103, 103, 0.902);
+    padding: 5px;
+    font-weight: bold;
+}
+
+#btn4:hover {
+    background: rgb(255, 131, 151);
+}
+
+#a-login {
+    color: #FFF;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#a-login:hover {
+    color: black;
+    transition: all .5s;
+}
+
+/* Logado */
+
+#textoLogado {
+    position: absolute;
+    top: 35%;
+    left: 18%;
+    text-align: center;
+    color: blueviolet;
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Não Logado */
+
+#textoNaoLogado {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    text-align: center;
+    color: red;
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
