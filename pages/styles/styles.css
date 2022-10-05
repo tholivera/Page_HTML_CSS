@@ -518,3 +518,66 @@ iframe {
     margin-top: -20px;
     margin-bottom: 20px;
 }
+
+/* Ver cadastro*/
+
+#tabela-cadastro {
+    position: relative;
+    top: 80px;
+    left: 150px;
+}
+
+.btn-update {
+    background: pink;
+    border-radius: 5px;
+    padding: 5px;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+.btn-delete {
+    background: red;
+    border-radius: 5px;
+    padding: 5px;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+#atualizar-cadastro {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 15%;
+    left: 35%;
+    padding: 15px;
+    border-radius: 5px;
+    background: rgba(255, 192, 203, 0.354);
+}
+
+#txt-atualizar-cadastro {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-family: 'Arial Narrow';
+    font-weight: bolder;
+    color: #655e5e;
+}
+
+#btn6 {
+    margin-top: 20px;
+    margin-left: 38%;
+    padding: 5px;
+    font-weight: bold;
+    background: pink;
+    border: 0;
+    border-radius: 2px;
+    color: #655e5e;
+    box-shadow: 2px 2px rgba(105, 103, 103, 0.902);
+}
+
+#btn6:hover {
+    background: rgb(254, 141, 160);
+    color: #FFF;
+    transition: all .5s;
+}
