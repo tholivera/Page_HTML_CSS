@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./../../image/Mandala.png" />
+    <link rel="stylesheet" href="./../styles/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <!--<script>"./../js/ver-cadastro.js"</script>-->
+    <title>Ver cadastro</title>
+</head>
+
+<body>
+    <nav>
+        <input type="checkbox" id="menuCheck" />
+        <label for="menuCheck"><img id="icone" src="./../../image/menu.png"
+                alt="Imagem de 3 barras horrizontais paralelas"></label>
+
+        <a href="./home.html"><img id="logo" src="./../../image/MundodoYoga.png" alt="Logo do Mundo do Yoga"></a>
+
+        <div class="menu">
+            <ul>
+                <li>
+                    <a class="itens" href="./home.html">Home</a>
+                </li>
+                <li>
+                    <a class="itens" href="./contato.html">fale conosco</a>
+                </li>
+            </ul>
+        </div>
+        <div class="logar">
+            <a class="itens-logar" href="./cadastro.html">Cadastre-se</a>
+
+            <a class="itens-logar" href="./login.html">Entrar</a>
+        </div>
+    </nav>
+
+    <table id="tabela-cadastro">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Senha</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"> </tbody>
+    </table>
+    <button id="btn-ver-cadastro" style="margin-top: 50px;">Ver cadastro</button>
+
+    <div id="atualizar-cadastro">
+        <form id="formulario-atualizar-cadastro">
+            <p id="txt-atualizar-cadastro">Atualizar Cadastro</p>
+            <div>
+                <label for="nome">Nome</label>
+                <input id="nome1" name="nome" type="text" placeholder="Digite seu nome" required>
+            </div>
+            <div>
+                <label for="email">E-mail</label>
+                <input id="email1" name="email" type="email" placeholder="Digite seu e-mail" required>
+                <span class="span">Digite um e-mail válido</span>
+            </div>
+            <div>
+                <label for="mensagem">Senha</label>
+                <input id="senha1" name="senha" type="password" placeholder="Digite sua senha" required></input>
+            </div>
+            <button id="btn6" type="submit">Atualizar</button>
+        </form>
+    </div>
+
+    <footer>
+        <div>
+            <p class="p1Footer">
+                Nos sigam nas redes sociais
+            </p>
+            <div>
+                <a href="https://br.linkedin.com/"><img class="redes" src="./../../image/linkedin.png"
+                        alt="LinkedIn"></a>
+                <a href="https://facebook.com/"><img class="redes" src="./../../image/facebook.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/"><img class="redes" src="./../../image/instagram.png"
+                        alt="Instagram"></a>
+            </div>
+            <p class="p2Footer">
+                Created by: Thaís Oliveira &copy; 2022
+            </p>
+        </div>
+    </footer>
+
+    <script>
+
+        $("#atualizar-cadastro").hide()
+
+        $("#btn-ver-cadastro").click(event => {
+            event.preventDefault()
+
+            $("#btn-ver-cadastro").click(() => {
+                $("table").toggle()
+            })
+
+            function mostrar() {
+                output = ""
+
+                $.ajax({
+                    url: "http://localhost:3000/ver-cadastro",
+                    method: "GET",
+                    dataType: "json",
+                    success: resultado => {
+
+                        if (resultado) {
+                            x = resultado
+                        } else {
+                            x = " "
+                        }
+
+                        for (i = 0; i <= x.length - 1; i++) {
+                            output += "<tr><td>" + x[i].id + "</td><td>"
+                                + x[i].nome + "</td><td>" + x[i].email + "</td><td>"
+                                + x[i].senha + "</td><td>"
+                                + "<button class='btn-update' id-usuario=" + x[i].id + ">Editar</button> <button class='btn-delete' id-usuario=" + x[i].id + " >Excluir</button>"
+                                + "</td></tr>"
+                        }
+                        $("#tbody").html(output)
+                    }
+                })
+            }
+            mostrar()
+
+            $("tbody").on("click", ".btn-update", function () {
+
+                $("#atualizar-cadastro").fadeIn()
+                $("table").fadeOut()
+
+                let id = $(this).attr("id-usuario")
+
+
+                let dados = {
+                    nome: $("#nome1").val(),
+                    email: $("#email1").val(),
+                    senha: $("#senha1").val()
+                }
+
+                $("#btn6").click(() => {
+
+                    alert(JSON.stringify(dados))
+                   /* $.ajax({
+                        url: "http://127.0.0.1:3000/atualizar-cadastro/" + id,
+                        type: 'PUT',
+                        dataType: "json",
+                        data: JSON.stringify(dados),
+                        success: function (resultado) {
+                            alert("Atualizado com sucesso")
+                        }
+                    })*/
+                 //   $("#atualizar-cadastro").fadeOut()
+                  //  $("table").fadeIn()
+                })
+
+
+
+            })
+
+            $("tbody").on("click", ".btn-delete", function () {
+
+                let id = $(this).attr("id-usuario")
+                alert("Botão delete clicado\n" + id)
+
+                let linhaDel = this
+
+                $.ajax({
+                    url: "http://127.0.0.1:3000/apagar-cadastro/" + id,
+                    type: 'DELETE',
+                    success: function (resultado) {
+                        alert("Deletado com sucesso")
+                        //mostrar()
+                        $(linhaDel).closest("tr").remove()
+                    }
+                })
+
+            })
+
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>
